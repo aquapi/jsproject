@@ -11,6 +11,10 @@
 </head>
 
 <body>
+    <button onclick="run()">highlight</button>
+    <textarea rows="12" style="width: 100%;">
+        (function sum(e) {<br><img> if (e &#60;&#61; 0) return 0; <br><img> return sum(e - 1) + e; <br>})(9) 
+        <li>// Output: 45</li></textarea>
     <div code>
         <code>
             (function sum(e) {<br><img> if (e &#60;&#61; 0) return 0; <br><img> return sum(e - 1) + e; <br>})(9) 
@@ -20,7 +24,10 @@
     <!--<img> is use to tab, <li> is use to comment-->
     <script src="highlight.js"></script>
     <script>
-        new Handler("div[code] code").highlight();
+        function run() {
+            document.querySelector("div[code] code").innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/> ');
+            new Handler("div[code] code").highlight();
+        }
     </script>
 </body>
 

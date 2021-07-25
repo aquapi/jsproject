@@ -137,7 +137,6 @@
                             this.selectionEnd = start + 1;
                     }
                 });
-
             }
         }
 
