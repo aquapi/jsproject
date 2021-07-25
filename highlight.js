@@ -9,7 +9,7 @@
             "class", "continue", "const", "default", "do", "else", "enum",
             "exports", "extends", "final", "finally", "for", "if", "implements",
             "import", "instanceof", "interface", "module", "new",
-            "private", "protected", "public", "return", "static",
+            "private", "protected", "return", "static",
             "super", "switch", "this", "throw",
             "try", "var", "void", "while", "true", "false", "null", "arguments",
             "await", "debugger", "delete", "eval", "function", "let", "typeof",
@@ -114,7 +114,7 @@
          */
 
         e.Handler = function (selector) {
-            this.highlight = function () {
+            this.JShighlight = function () {
                 var val = document.querySelector(selector).innerHTML;
                 var res = val.split(" ");
                 var result = "";
