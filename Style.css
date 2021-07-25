@@ -29,10 +29,10 @@ div[code] img {
 div[code] ul {
     display: inline;
     list-style-type: none;
-    color: #6a9955;
+    color: #6a9955 !important;
 }
 
 div[code] li {
-    color: #6a9955;
+    color: #6a9955 !important;
     list-style-type: none;
 }
