@@ -113,7 +113,7 @@
          * @since 1.1
          */
 
-        e.Handler = function (selector) {
+        e.Handler = function (selector = "div[code] code") {
             this.JShighlight = function () {
                 var val = document.querySelector(selector).innerHTML;
                 var res = val.split(" ");
