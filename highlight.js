@@ -17,6 +17,7 @@
             "from", "as", "async", "get", "set", "then", "number", "string", "type",
             "readonly", "declare", "symbol", "namespace", "let"];
         const strx = /^"|^'/;
+        const regexx = /\/[^\/]*\//;
         const nx = /"$|'$/;
         const numx = /^\d+$/;
         var in_string = false;
@@ -27,6 +28,9 @@
          */
 
         const replace = function (str, in_string) {
+            if (regexx.test(str)) {
+                return "<span class='str'>" + str + "</span>";
+            }
             if (strx.test(str) || in_string || nx.test(str)) {
                 return "<span class='str'>" + str + "</span>";
             } else if (numx.test(str)) {
@@ -48,7 +52,7 @@
                 return str;
             }
         }
-        const quote = [",", ".", ";", "[", "]", "{", "}", "(", ")", "[]", "{}", "()", ";"];
+        const quote = [",", ".", ";", "[", "]", "{", "}", "(", ")", "[]", "{}", "()", ":"];
 
         /**
          * @param {string} str 
