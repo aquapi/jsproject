@@ -15,7 +15,7 @@
             "await", "debugger", "delete", "eval", "function", "let", "typeof",
             "constructor", "in", "of", "require",
             "from", "as", "async", "get", "set", "then", "number", "string", "type",
-            "readonly", "declare", "symbol", "namespace", "let"];
+            "readonly", "declare", "symbol", "namespace", "let", "=>"];
         const strx = /^"|^'/;
         const nx = /"$|'$/;
         const numx = /^\d+$/;
