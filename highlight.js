@@ -10,7 +10,7 @@
             "exports", "extends", "final", "finally", "for", "if", "implements",
             "import", "instanceof", "interface", "module", "new",
             "private", "protected", "return", "static",
-            "super", "switch", "this", "throw",
+            "super", "switch", "this", "throw", "any", "export",
             "try", "var", "void", "while", "true", "false", "null", "arguments",
             "await", "debugger", "delete", "eval", "function", "let", "typeof",
             "constructor", "in", "of", "require",
