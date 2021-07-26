@@ -18,7 +18,7 @@
             "readonly", "declare", "symbol", "namespace", "let", "=>"];
         const strx = /^"|^'/;
         const nx = /"$|'$/;
-        const numx = /^\d+$/;
+        const numx = /[-0-9]+/;
         var in_string = false;
 
         /**
@@ -48,7 +48,7 @@
                 return str;
             }
         }
-        const quote = [",", ".", ";", "[", "]", "{", "}", "(", ")", "[]", "{}", "()", ":", "-"];
+        const quote = [",", ".", ";", "[", "]", "{", "}", "(", ")", "[]", "{}", "()", ":"];
 
         /**
          * @param {string} str 
