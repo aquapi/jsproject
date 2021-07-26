@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+            line-height: 23px;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        div {
+            display: flex;
+            border: 1px solid black;
+            line-height: 0px;
+            margin: 0px;
+            width: 36px;
+            height: 36px;
+            text-align: center;
+            padding: 10px;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            margin: 1px;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <div></div>
+            <div></div>
+            <div></div>
+        </li>
+        <li>
+            <div></div>
+            <div></div>
+            <div></div>
+        </li>
+        <li>
+            <div></div>
+            <div></div>
+            <div></div>
+        </li>
+    </ul>
+    <script>
+        class Mode {
+            static get NORMAL() {
+                return 1;
+            }
+
+            static get DIAGONAL() {
+                return 2;
+            }
+
+            static get HORIZONTAL() {
+                return 3;
+            }
+
+            static get VERTICAL() {
+                return 4;
+            }
+        }
+
+        class Direction {
+            static get LEFT() {
+                return false;
+            }
+
+            static get RIGHT() {
+                return true;
+            }
+        }
+        class Iterator2D {
+            x;
+            y;
+            w;
+            list;
+            mode;
+            w;
+
+            /**
+             * @param {number} x
+             * @param {number} y
+             * @param {number} mode
+             * @param {boolean} w 
+             */
+
+            constructor(x, y, list, mode, w) {
+                this.list = list;
+                this.x = x;
+                this.y = y;
+                this.mode = mode;
+                this.w = w;
+            }
+
+            /**
+             * @param {(e) => void} callback 
+             */
+
+            forEach(callback) {
+                for (var k = 0; k < list.length; k++) {
+                    callback(this.list[this.x][this.y]);
+                    if (this.mode == Mode.DIAGONAL) {
+                        if (this.w == Direction.LEFT) {
+                            this.x--;
+                            this.y--;
+                        } else {
+                            this.x++;
+                            this.y++;
+                        }
+                    }
+                    if (this.mode == Mode.HORIZONTAL) {
+                        if (this.w == Direction.LEFT) {
+                            this.x--;
+                        } else {
+                            this.x++;
+                        }
+                    }
+                    if (this.mode == Mode.VERTICAL) {
+                        if (this.w == Direction.LEFT) {
+                            this.y--;
+                        } else {
+                            this.y++;
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        const $ = function (selector) {
+            return document.querySelectorAll(selector);
+        }
+        var player_turn = true, player_score = 0, cpu_score = 0, player_win = false;
+        var left = false, right = false;
+        var list = [[$('div')[0].innerHTML, $('div')[1].innerHTML, $('div')[2].innerHTML],
+        [$('div')[3].innerHTML, $('div')[4].innerHTML, $('div')[5].innerHTML],
+        [$('div')[6].innerHTML, $('div')[7].innerHTML, $('div')[8].innerHTML]
+        ];
+        function win() {
+            var total = 0;
+            for (var i = 0; i < 3; i++) {
+                for (var j = 0; j < 3; j++) {
+                    for (var mode = Mode.DIAGONAL; mode < Mode.VERTICAL; mode++) {
+                        var k = new Iterator2D(i, j, list, mode, true);
+                        var l = new Iterator2D(i, j, list, mode, false);
+                        k.forEach((e) => {
+                            if (e == "X") total++;
+                        });
+                    }
+                    if (total == 3) {
+                        player_win = true;
+                        return true;
+                    } else {
+                        for (var mode = Mode.DIAGONAL; mode < Mode.VERTICAL; mode++) {
+                            var k = new Iterator2D(i, j, list, mode, true);
+                            var l = new Iterator2D(i, j, list, mode, false);
+                            k.forEach((e) => {
+                                if (e == "O") total++;
+                            });
+                        }
+                        if (total == 3) {
+                            player_win = false;
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        function reset() {
+            document.querySelectorAll("div").forEach(function (e) {
+                e.innerHTML = "";
+            });
+        }
+        document.querySelectorAll("div").forEach(function (e) {
+            e.addEventListener("click", function () {
+                if (player_turn) {
+                    e.innerHTML = "X";
+                    if (win() && player_win) {
+                        player_score += 1;
+                        reset();
+                        player_turn = true;
+                        return;
+                    } else if (win() && !player_win ) {
+                        cpu_score += 1;
+                        reset();
+                        player_turn = true;
+                        return;
+                    }
+                    player_turn = false;
+                } else {
+                    e.innerHTML = "O";
+                    player_turn = true;
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
