@@ -6,186 +6,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VS 2019 Dark theme</title>
-
     <link rel="stylesheet" href="Style.css" />
+    <style>
+        textarea {
+            z-index: 2;
+            background-color: transparent;
+            overflow: scroll;
+            color: white;
+            padding-top: 19px;
+            padding-left: 32px;
+            cursor: text;
+            font-size: 13px;
+            font-family: monospace;
+            line-height: 1.3;
+            padding-bottom: 23px;
+            height: 215px;
+        }
+
+        div[code] {
+            z-index: 1;
+            overflow: scroll;
+        }
+
+        button {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
-    <button onclick="run()">highlight</button>
-    <textarea rows="12" style="width: 100%;">
-        export function properties(obj) {
-            <img> var p = [];
-            <img> for (; obj != null; obj = Object.getPrototypeOf(obj)) {
-            <img><img> var op = Object.getOwnPropertyNames(obj);
-            <img><img> for (var i = 0; i < op.length; i++)
-            <img><img><img> if (p.indexOf(op[i]) == -1)
-            <img><img><img><img> p.push(op[i]);
-            <img> }
-            <img> return p;
-            }
-            
-            export async function delay(delay, callback, args) {
-            <img> return await new Promise(resolve => {
-            <img><img> setTimeout(() => {
-            <img><img><img> resolve((callback(args)));
-            <img><img> }, delay);
-            <img> });
-            }
-            
-            export function schedule(delay, callback, args) {
-            <img> new Promise(resolve => {
-            <img><img> setTimeout(() => {
-            <img><img><img> resolve((callback(args)));
-            <img><img> }, delay);
-            <img> }).catch(handle);
-            }
-            
-            export function handle(error) {
-            <img> if (error) throw error;
-            }
-            
-            export function $(selector) {
-            <img> return document.querySelector(selector);
-            }
-            
-            export class TimerTask {
-            <img> #time;
-            <img> #task;
-            
-            <img> constructor(task, time) {
-            <img><img> this.#task = task; 
-            <img><img> this.#time = time;
-            <img> }
-            
-            <img> get time() {
-            <img><img> return this.#time;
-            <img> }
-            
-            <img> async getTime() {
-            <img><img> return this.#time;
-            <img> }
-            
-            <img> get task() {
-            <img><img> return this.#task;
-            <img> }
-            
-            <img> settime(time) {
-            <img><img> this.#time = time;
-            <img> }
-            
-            <img> run() {
-            <img><img> delay(this.exectime, this.#task).catch(handle);
-            <img> }
-            
-            <img> repeat(x) {
-            <img><img> var exec = this.#time;
-            <img><img> var list = [];
-            <img><img> for (var i = 0; i < x; i++) {
-            <img><img><img> delay(exec, this.#task).catch(handle);
-            <img><img><img> list.push(new TimerTask(this.#task, exec));
-            <img><img><img> exec += this.#time;
-            <img><img> }
-            <img><img> return list;
-            <img> }
-            }
-            
-            export class Timer {
-            <img> #task;
-            
-            <img> constructor(...task) {
-            <img><img> this.#task = task;
-            <img> }
-            
-            <img> start() {
-            <img><img> var end = 0;
-            <img><img> for (var timertask of this.#task) {
-            <img><img><img> if (end < timertask.time) end = timertask.time;
-            <img><img><img><img> delay(timertask.time, timertask.task);
-            <img><img> }
-            <img><img> return end;
-            <img> }
-            
-            <img> tasklist() {
-            <img><img> return this.#task;
-            <img> }
-            
-            <img> add(task) {
-            <img><img> this.#task.push(task);
-            <img> }
-            
-            <img> addAll(...task) {
-            <img><img> for (var timertask of task) {
-            <img><img><img> this.add(timertask);
-            <img><img> }
-            <img> }
-            
-            <img> #remove(index) {
-            <img><img> this.#task.splice(index, 1);
-            <img> }
-            
-            <img> remove(task) {
-            <img><img> this.#remove(this.#task.indexOf(task));
-            <img> }
-            
-            <img> getTask(time) {
-            <img><img> for (var timertask of this.#task) {
-            <img><img><img> if (timertask.time === time) return timertask;
-            <img><img> }
-            <img><img> return new TimerTask(function () { }, 0);
-            <img> }
-            }
-            
-            export class TreeLimb {
-            <img> #value;
-            <img> #child;
-            
-            <img> constructor(value) {
-            <img><img> this.#value = value;
-            <img><img> this.#child = [];
-            <img> }
-            
-            <img> get value() {
-            <img><img> return this.#value;
-            <img> }
-            
-            <img> get child() {
-            <img><img> return this.#child;
-            <img> }
-            
-            <img> set value(value) {
-            <img><img> this.#value = value;
-            <img> }
-            
-            <img> add(limb) {
-            <img><img> this.#child.push(limb);
-            <img> }
-            
-            <img> add(value) {
-            <img><img> this.#child.push(new TreeLimb(value));
-            <img> }
-            
-            <img> #remove(index) {
-            <img><img> this.#child.splice(index, 1);
-            <img> }
-            
-            <img> remove(limb) {
-            <img><img> this.#remove(this.#child.indexOf(limb));
-            <img> }
-            }
-    </textarea>
-    <div code>
+    <div code style="position: absolute; width: 100%; height:215.2px; overflow: scroll;">
         <code>
         </code>
     </div>
+    <textarea rows="12" style="width: 100%; position: absolute;"></textarea>
     <!--<img> is use to tab, <li> is use to comment-->
     <script src="highlight.js"></script>
     <script>
         new Handler().JShighlight();
-        new Handler().tabignore();
-        function run() {
+        new Handler("textarea").tabignore();
+        document.querySelector("textarea").addEventListener("keydown", function (e) {
             document.querySelector("div[code] code").innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/> ');
             new Handler().JShighlight();
-        }
+        })
+        document.querySelector("textarea").addEventListener("keypress", function (e) {
+            document.querySelector("div[code] code").innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/> ');
+            new Handler().JShighlight();
+        })
+        document.querySelector("textarea").addEventListener("keyup", function (e) {
+            document.querySelector("div[code] code").innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/> ');
+            new Handler().JShighlight();
+        })
     </script>
 </body>
 
