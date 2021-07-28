@@ -5,20 +5,18 @@
      */
 
     function (e) {
-        const keyword = ["assert", "break", "case", "catch",
-            "class", "continue", "const", "default", "do", "else", "enum",
-            "exports", "extends", "final", "finally", "for", "if", "implements",
-            "import", "instanceof", "interface", "module", "new",
-            "private", "protected", "return", "static",
-            "super", "switch", "this", "throw", "any", "export",
-            "try", "var", "void", "while", "true", "false", "null", "arguments",
-            "await", "debugger", "delete", "eval", "function", "let", "typeof",
-            "constructor", "in", "of", "require",
-            "from", "as", "async", "get", "set", "then", "number", "string", "type",
-            "readonly", "declare", "symbol", "namespace", "let", "=>"];
+        const keyword = ["assert", "break", "case", "catch", "goto", "native", "class", "continue", "const", 
+        "default", "do", "else", "enum", "throws", "exports", "extends", "final", "finally", "for", "if", 
+        "implements", "int", "import", "instanceof", "interface", "module", "new", "with", "synchronized", 
+        "private", "protected", "return", "static", "never", "undefined", "volatile", "super", "switch", 
+        "this", "throw", "any", "export", "bigint", "package", "try", "var", "void", "while", "true", 
+        "false", "null", "arguments", "long", "await", "debugger", "delete", "eval", "function", "let", 
+        "typeof", "double", "constructor", "in", "of", "require", "boolean", "yield", "transient", "from", 
+        "as", "async", "get", "set", "then", "number", "string", "type", "char", "readonly", "declare", 
+        "symbol", "namespace", "byte", "float"];
         const strx = /^"|^'/;
         const nx = /"$|'$/;
-        const numx = /[-0-9]+/;
+        const numx = /^-?[0-9]\d*(\.\d+)?$/;
         var in_string = false;
 
         /**
@@ -28,8 +26,9 @@
 
         const replace = function (str, in_string) {
             if (strx.test(str) || in_string || nx.test(str)) {
+                in_string = true;
                 return "<span class='str'>" + str + "</span>";
-            } else if (numx.test(str)) {
+            } else if (numx.test(str) || str == "\"" || str == "'") {
                 in_string = false;
                 return "<span class='num'>" + str + "</span>";
             } else {
@@ -48,7 +47,7 @@
                 return str;
             }
         }
-        const quote = [",", ".", ";", "[", "]", "{", "}", "(", ")", "[]", "{}", "()", ":"];
+        const quote = [",", ".", ";", "[", "]", "{", "}", "(", ")", "[]", "{}", "()", ":", "&#60;", "&#62;", "<", ">"];
 
         /**
          * @param {string} str 
