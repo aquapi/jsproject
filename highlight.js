@@ -13,7 +13,7 @@
         "false", "null", "arguments", "long", "await", "debugger", "delete", "eval", "function", "let", 
         "typeof", "double", "constructor", "in", "of", "require", "boolean", "yield", "transient", "from", 
         "as", "async", "get", "set", "then", "number", "string", "type", "char", "readonly", "declare", 
-        "symbol", "namespace", "byte", "float"];
+        "symbol", "namespace", "byte", "float", "public"];
         const strx = /^"|^'/;
         const nx = /"$|'$/;
         const numx = /^-?[0-9]\d*(\.\d+)?$/;

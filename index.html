@@ -12,7 +12,7 @@
             z-index: 2;
             background-color: transparent;
             overflow: scroll;
-            color: white;
+            color: transparent;
             padding-top: 19px;
             padding-left: 32px;
             cursor: text;
@@ -46,17 +46,17 @@
         new Handler().JShighlight();
         new Handler("textarea").tabignore();
         document.querySelector("textarea").addEventListener("keydown", function (e) {
-            document.querySelector("div[code] code").innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/> ');
+            document.querySelector("div[code] code").innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/> ');;
             new Handler().JShighlight();
-        })
+        });
         document.querySelector("textarea").addEventListener("keypress", function (e) {
-            document.querySelector("div[code] code").innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/> ');
+            document.querySelector("div[code] code").innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/> ');;
             new Handler().JShighlight();
-        })
+        });
         document.querySelector("textarea").addEventListener("keyup", function (e) {
-            document.querySelector("div[code] code").innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/> ');
+            document.querySelector("div[code] code").innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/> ');;
             new Handler().JShighlight();
-        })
+        });
     </script>
 </body>
 
