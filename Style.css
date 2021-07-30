@@ -6,6 +6,9 @@ div[code] {
     padding-top: 20px;
     padding-bottom: 20px;
     color: rgb(212, 212, 212);
+    white-space: pre;
+    display: flex;
+    justify-content: left;
 }
 
 div[code] > code > .keyword {
@@ -21,9 +24,8 @@ div[code] > code > .num {
 }
 
 div[code] > code > img {
+    visibility: hidden;
     width: 20px;
-    background-color: rgb(30, 30, 30);
-    color: rgb(30, 30, 30)
 }
 
 div[code] ul {

@@ -5,15 +5,15 @@
      */
 
     function (e) {
-        const keyword = ["assert", "break", "case", "catch", "goto", "native", "class", "continue", "const", 
-        "default", "do", "else", "enum", "throws", "exports", "extends", "final", "finally", "for", "if", 
-        "implements", "int", "import", "instanceof", "interface", "module", "new", "with", "synchronized", 
-        "private", "protected", "return", "static", "never", "undefined", "volatile", "super", "switch", 
-        "this", "throw", "any", "export", "bigint", "package", "try", "var", "void", "while", "true", 
-        "false", "null", "arguments", "long", "await", "debugger", "delete", "eval", "function", "let", 
-        "typeof", "double", "constructor", "in", "of", "require", "boolean", "yield", "transient", "from", 
-        "as", "async", "get", "set", "then", "number", "string", "type", "char", "readonly", "declare", 
-        "symbol", "namespace", "byte", "float", "public"];
+        const keyword = ["assert", "break", "case", "catch", "goto", "native", "class", "continue", "const",
+            "default", "do", "else", "enum", "throws", "exports", "extends", "final", "finally", "for", "if",
+            "implements", "int", "import", "instanceof", "interface", "module", "new", "with", "synchronized",
+            "private", "protected", "return", "static", "never", "undefined", "volatile", "super", "switch",
+            "this", "throw", "any", "export", "bigint", "package", "try", "var", "void", "while", "true",
+            "false", "null", "arguments", "long", "await", "debugger", "delete", "eval", "function", "let",
+            "typeof", "double", "constructor", "in", "of", "require", "boolean", "yield", "transient", "from",
+            "as", "async", "get", "set", "then", "number", "string", "type", "char", "readonly", "declare",
+            "symbol", "namespace", "byte", "float", "public"];
         const strx = /^"|^'/;
         const nx = /"$|'$/;
         const numx = /^-?[0-9]\d*(\.\d+)?$/;
@@ -47,7 +47,7 @@
                 return str;
             }
         }
-        const quote = [",", ".", ";", "[", "]", "{", "}", "(", ")", "[]", "{}", "()", ":", "&#60;", "&#62;", "<", ">"];
+        const quote = [",", ".", ";", "[", "]", "{", "}", "(", ")", "[]", "{}", "()", ":", "<", ">", "\t"];
 
         /**
          * @param {string} str 
@@ -118,6 +118,10 @@
                 var res = val.split(" ");
                 var result = "";
                 for (const e of res) {
+                    if (e == "<br>" || e == "&#9;") {
+                        result += e + " ";
+                        continue;
+                    }
                     result += replace_quote(e, in_string) + " ";
                 }
                 document.querySelector(selector).innerHTML = result;
@@ -135,6 +139,30 @@
                         this.selectionStart =
                             this.selectionEnd = start + 1;
                     }
+                });
+            }
+
+            this.IDESetup = function () {
+                document.querySelector("div[ide-container] > textarea").addEventListener("keydown", function (e) {
+                    if (e.key == 'Tab') {
+                        e.preventDefault();
+                        var start = this.selectionStart;
+                        var end = this.selectionEnd;
+                        this.value = this.value.substring(0, start) +
+                            '&#9;' + this.value.substring(end);
+                        this.selectionStart =
+                            this.selectionEnd = start + 4;
+                    }
+                    document.querySelector(selector).innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/>');
+                    new Handler(selector).JShighlight();
+                });
+                document.querySelector("div[ide-container] > textarea").addEventListener("keypress", function (e) {
+                    document.querySelector(selector).innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/>');
+                    new Handler(selector).JShighlight();
+                });
+                document.querySelector("div[ide-container] > textarea").addEventListener("keyup", function (e) {
+                    document.querySelector(selector).innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/>');
+                    new Handler(selector).JShighlight();
                 });
             }
         }
