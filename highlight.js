@@ -153,16 +153,24 @@
                         this.selectionStart =
                             this.selectionEnd = start + 4;
                     }
+                    if (e.key == "Backspace") {
+                        if (this.value.endsWith("&#9;")) {
+                            this.value = this.value.substring(0, this.value.length - 4);
+                        }
+                    }
                     document.querySelector(selector).innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/>');
                     new Handler(selector).JShighlight();
                 });
-                document.querySelector("div[ide-container] > textarea").addEventListener("keypress", function (e) {
+                document.querySelector("div[ide-container] > textarea").addEventListener("keypress", function () {
                     document.querySelector(selector).innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/>');
                     new Handler(selector).JShighlight();
                 });
-                document.querySelector("div[ide-container] > textarea").addEventListener("keyup", function (e) {
+                document.querySelector("div[ide-container] > textarea").addEventListener("keyup", function () {
                     document.querySelector(selector).innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/>');
                     new Handler(selector).JShighlight();
+                });
+                document.querySelector("div[ide-container] > div[copy]").addEventListener("click", function () {
+                    navigator.clipboard.writeText(document.querySelector("div[ide-container] > div[code] > code").textContent);
                 });
             }
         }

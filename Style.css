@@ -9,6 +9,7 @@ div[code] {
     white-space: pre;
     display: flex;
     justify-content: left;
+    tab-size: 4 !important;
 }
 
 div[code] > code > .keyword {
@@ -21,11 +22,6 @@ div[code] > code > .str {
 
 div[code] > code > .num {
     color: #b5cea8;
-}
-
-div[code] > code > img {
-    visibility: hidden;
-    width: 20px;
 }
 
 div[code] ul {

@@ -183,15 +183,15 @@
         var match = 0;
         match += checkdown(pattern, list, posX, posY, match_XO);
         match += checkup(pattern, list, posX, posY, match_XO);
-        if (match != 5) {
+        if (match < 5) {
             match = 0;
             match += checkleft(pattern, list, posX, posY, match_XO);
             match += checkright(pattern, list, posX, posY, match_XO);
-            if (match != 5) {
+            if (match < 5) {
                 match = 0;
                 match += diagonal_right_down(pattern, list, posX, posY, match_XO);
                 match += diagonal_left_up(pattern, list, posX, posY, match_XO);
-                if (match != 5) {
+                if (match < 5) {
                     match = 0;
                     match += diagonal_right_up(pattern, list, posX, posY, match_XO);
                     match += diagonal_left_down(pattern, list, posX, posY, match_XO);
