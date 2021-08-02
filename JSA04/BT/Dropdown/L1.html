@@ -26,38 +26,42 @@
             align-items: center;
             user-select: none;
         }
+
+        .blue {
+            background-color: lightskyblue !important;
+        }
     </style>
 </head>
 
 <body style="display: flex; align-items: center; flex-direction: column; font-family: monospace">
-    <div class="clickdrop" id=1>
+    <div class="clickdrop">
         <h3>Dropdown</h3>
     </div>
-    <div class="drop" id=1>
+    <div class="drop">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quidem dolorem asperiores optio consequuntur,
         fugit, ullam vel eum itaque eveniet, accusamus maxime alias porro inventore incidunt obcaecati perferendis quod
         magni.
     </div>
-    <div class="clickdrop" id=2>
+    <div class="clickdrop">
         <h3>Dropdown</h3>
     </div>
-    <div class="drop" id=2>
+    <div class="drop">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quidem dolorem asperiores optio consequuntur,
         fugit, ullam vel eum itaque eveniet, accusamus maxime alias porro inventore incidunt obcaecati perferendis quod
         magni.
     </div>
-    <div class="clickdrop" id=3>
+    <div class="clickdrop">
         <h3>Dropdown</h3>
     </div>
-    <div class="drop" id=3>
+    <div class="drop">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quidem dolorem asperiores optio consequuntur,
         fugit, ullam vel eum itaque eveniet, accusamus maxime alias porro inventore incidunt obcaecati perferendis quod
         magni.
     </div>
-    <div class="clickdrop" id=4>
+    <div class="clickdrop">
         <h3>Dropdown</h3>
     </div>
-    <div class="drop" id=4>
+    <div class="drop">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quidem dolorem asperiores optio consequuntur,
         fugit, ullam vel eum itaque eveniet, accusamus maxime alias porro inventore incidunt obcaecati perferendis quod
         magni.
@@ -65,32 +69,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $("div.drop").slideUp();
-        function Dropdown(selector, button, prop) {
-            this.selector = selector;
-            this.button = button;
-            this.clicked = false;
-            this.exec = function () {
-                $(button).click(function () {
-                    this.clicked = !this.clicked;
-                    if (this.clicked) {
-                        $(button).css(prop["property"], prop["clickvalue"]);
-                        $(selector).slideDown();
-                    } else {
-                        $(button).css(prop["property"], prop["value"]);
-                        $(selector).slideUp();
-                    }
-                })
-            }
-        }
-        var prop = {
-            property: "background-color",
-            clickvalue: "lightskyblue",
-            value: "darkorange",
-        }
-        new Dropdown("div#1.drop", "div#1.clickdrop", prop).exec();
-        new Dropdown("div#2.drop", "div#2.clickdrop", prop).exec();
-        new Dropdown("div#3.drop", "div#3.clickdrop", prop).exec();
-        new Dropdown("div#4.drop", "div#4.clickdrop", prop).exec();
+        $("div.clickdrop").click(function () {
+            $(this).next().slideToggle(1000);
+            $(this).toggleClass("blue");
+        })
     </script>
 </body>
 
