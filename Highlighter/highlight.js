@@ -143,6 +143,10 @@
             }
 
             this.IDESetup = function () {
+                document.querySelector("div[ide-container] > textarea").addEventListener("keyup", function (e) {
+                    document.querySelector(selector).innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/>');
+                    new Handler(selector).JShighlight();
+                });
                 document.querySelector("div[ide-container] > textarea").addEventListener("keydown", function (e) {
                     if (e.key == 'Tab') {
                         e.preventDefault();
@@ -158,17 +162,11 @@
                             this.value = this.value.substring(0, this.value.length - 4);
                         }
                     }
-                    document.querySelector(selector).innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/>');
-                    new Handler(selector).JShighlight();
-                });
-                document.querySelector("div[ide-container] > textarea").addEventListener("keypress", function () {
-                    document.querySelector(selector).innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/>');
-                    new Handler(selector).JShighlight();
-                });
-                document.querySelector("div[ide-container] > textarea").addEventListener("keyup", function () {
-                    document.querySelector(selector).innerHTML = document.querySelector("textarea").value.replace(/\n\r?/g, '<br/>');
-                    new Handler(selector).JShighlight();
-                });
+                })
+                document.querySelector("div[ide-container] > textarea").addEventListener("scroll", function (e) {
+                    var k = document.querySelector("div[ide-container] > textarea").scrollTop;
+                    document.querySelector("div[ide-container] > div[code]").scrollTo(0, k);
+                })
                 document.querySelector("div[ide-container] > div[copy]").addEventListener("click", function () {
                     navigator.clipboard.writeText(document.querySelector("div[ide-container] > div[code] > code").textContent);
                 });

@@ -22,17 +22,17 @@ div[config="default"] > textarea {
 }
 
 div[ide-container] > div[copy] {
-    padding: 10px;
-    width: 60px;
-    left: 93%;
+    width: 20px;
+    height: 30px;
+    right: 3%;
     top: 27px;
-    text-align: center;
-    font-family: monospace;
     position: absolute;
     z-index: 3;
-    border: 2px solid #111;
-    background-color: white;
-    color: #111;
+    background-image: url('https://www.pngkit.com/png/full/351-3516855_clipboard-symbol-white-checklist-icon-white-png.png');
+    background-color: rgb(30, 30, 30);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
 }
 
 div[ide-container] > div[code] {
