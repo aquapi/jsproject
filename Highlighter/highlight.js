@@ -118,7 +118,7 @@
                 var res = val.split(" ");
                 var result = "";
                 for (const e of res) {
-                    if (e == "<br>" || e == "&#9;") {
+                    if (e == "<br>") {
                         result += e + " ";
                         continue;
                     }
@@ -153,18 +153,21 @@
                         var start = this.selectionStart;
                         var end = this.selectionEnd;
                         this.value = this.value.substring(0, start) +
-                            '&#9;' + this.value.substring(end);
+                            '    ' + this.value.substring(end);
                         this.selectionStart =
                             this.selectionEnd = start + 4;
                     }
                     if (e.key == "Backspace") {
-                        if (this.value.endsWith("&#9;")) {
+                        if (this.value.endsWith("    ")) {
                             this.value = this.value.substring(0, this.value.length - 4);
                         }
                     }
                 })
                 document.querySelector("div[ide-container] > textarea").addEventListener("scroll", function (e) {
                     var k = document.querySelector("div[ide-container] > textarea").scrollTop;
+                    if (document.querySelector("div[ide-container] > div[code]").scrollHeight - document.querySelector("div[ide-container] > textarea").scrollTop < 747.60009765625) {
+                        document.querySelector("div[ide-container] > div[code]").scrollTo(0, document.querySelector("div[ide-container] > textarea").scrollHeight - 747.60009765625)
+                    }
                     document.querySelector("div[ide-container] > div[code]").scrollTo(0, k);
                 })
                 document.querySelector("div[ide-container] > div[copy]").addEventListener("click", function () {

@@ -22,17 +22,22 @@ div[config="default"] > textarea {
 }
 
 div[ide-container] > div[copy] {
-    width: 20px;
-    height: 30px;
+    width: 30px;
+    height: 40px;
     right: 3%;
     top: 27px;
     position: absolute;
     z-index: 3;
-    background-image: url('https://www.pngkit.com/png/full/351-3516855_clipboard-symbol-white-checklist-icon-white-png.png');
+    background-image: url('https://uploads-ssl.webflow.com/5fb172981c0cce385992fd40/600f38a6c8542a80a31e49e0_copy-clipboard-icon-w.png');
     background-color: rgb(30, 30, 30);
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: bottom;
+    background-position: center;
+    border-radius: 20%;
+}
+
+div[ide-container] > div[copy]:hover {
+    background-color: #444;
 }
 
 div[ide-container] > div[code] {
