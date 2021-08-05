@@ -165,12 +165,9 @@
                 })
                 document.querySelector("div[ide-container] > textarea").addEventListener("scroll", function (e) {
                     var k = document.querySelector("div[ide-container] > textarea").scrollTop;
-                    if (document.querySelector("div[ide-container] > div[code]").scrollHeight - document.querySelector("div[ide-container] > textarea").scrollTop < 747.60009765625) {
-                        document.querySelector("div[ide-container] > div[code]").scrollTo(0, document.querySelector("div[ide-container] > textarea").scrollHeight - 747.60009765625)
-                    }
                     document.querySelector("div[ide-container] > div[code]").scrollTo(0, k);
                 })
-                document.querySelector("div[ide-container] > div[copy]").addEventListener("click", function () {
+                document.querySelector("div[ide-container] > div[tool=copy]").addEventListener("click", function () {
                     navigator.clipboard.writeText(document.querySelector("div[ide-container] > div[code] > code").textContent);
                 });
             }
