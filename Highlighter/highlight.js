@@ -5,6 +5,7 @@
      */
 
     function (e) {
+        "use strict";
         const keyword = ["assert", "break", "case", "catch", "goto", "native", "class", "continue", "const",
             "default", "do", "else", "enum", "throws", "exports", "extends", "final", "finally", "for", "if",
             "implements", "int", "import", "instanceof", "interface", "module", "new", "with", "synchronized",
@@ -109,6 +110,7 @@
 
         /**
          * @param {string} selector 
+         * @description cannot contains 2 or more IDEs in one site
          * @since 1.1
          */
 
@@ -165,11 +167,8 @@
                 })
                 document.querySelector("div[ide-container] > textarea").addEventListener("scroll", function (e) {
                     var k = document.querySelector("div[ide-container] > textarea").scrollTop;
-                    document.querySelector("div[ide-container] > div[code]").scrollTo(0, k);
+                    document.querySelector(selector).parentNode.scrollTo(0, k);
                 })
-                document.querySelector("div[ide-container] > div[tool=copy]").addEventListener("click", function () {
-                    navigator.clipboard.writeText(document.querySelector("div[ide-container] > div[code] > code").textContent);
-                });
             }
         }
 
