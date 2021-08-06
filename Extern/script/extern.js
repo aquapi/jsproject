@@ -232,3 +232,19 @@ export class TreeLimb {
         this.#remove(this.#child.indexOf(limb));
     }
 }
+
+/**
+ * @param {object} object 
+ */
+
+export function toString(object) {
+    return JSON.stringify(object);
+}
+
+/**
+ * @param {string} key 
+ */
+
+export function storageGet(key) {
+    return JSON.parse(localStorage.getItem(key));
+}
