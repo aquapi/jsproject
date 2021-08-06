@@ -13,17 +13,13 @@ div[ide-container] > textarea {
     tab-size: 4;
     user-select: none;
     padding-bottom: 23px;
+    max-height: 420px;
     position: absolute;
 }
 
 div[config="default"] > textarea {
     width: 100%;
     height: 400px;
-}
-
-div[ide-container] > div[tool=copy] {
-    top: 27px;
-    background-image: url('https://uploads-ssl.webflow.com/5fb172981c0cce385992fd40/600f38a6c8542a80a31e49e0_copy-clipboard-icon-w.png');
 }
 
 div[ide-container] > div[tool] {
