@@ -22,6 +22,7 @@
 
         /**
          * @param {string} str 
+         * @param {boolean} in_string
          * @returns highlighted string
          */
 
@@ -35,14 +36,7 @@
             } else {
                 for (const i of keyword) {
                     if (i == str) {
-                        in_string = false;
                         return "<span class='keyword'>" + str + "</span>";
-                    }
-                }
-                for (const q of quote) {
-                    if (q == str && !in_string) {
-                        in_string = false;
-                        return q;
                     }
                 }
                 return str;
